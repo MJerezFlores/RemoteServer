@@ -1,0 +1,81 @@
+<head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/homepage.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Kreon|Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="ConfigurationController">
+    <form name="configurationForm">
+        <div class="group">
+            <input type="text" name="nickname" ng-model="configuration.nickname" required><span class="highlight" ></span><span class="bar"></span>
+            <label>Nickname</label>
+        </div>
+        <!--<div ng-messages="userForm.nickname.$error">-->
+        <!--<div ng-message="required"></div>-->
+        <!--</div>-->
+        <div class="group">
+            <input type="text" name="path" ng-model="configuration.path" required><span class="highlight"></span><span class="bar"></span>
+            <label>Path local</label>
+        </div>
+        <!--<div ng-messages="email.nickname.$error">-->
+        <!--<div ng-message="required"></div>-->
+        <!--<div ng-message="email">Your email address is invalid</div>-->
+        <!--</div>-->
+        <button type="submit" class="button buttonBlue" ng-click="this.configurationForm.$valid && addConfiguration($event)" >Accept
+            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+        </button>
+    </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="js/app.js"></script>
+<script>
+    $(window, document, undefined).ready(function() {
+        $('input').blur(function() {
+            var $this = $(this);
+            if ($this.val())
+                $this.addClass('used');
+            else
+                $this.removeClass('used');
+        });
+
+        var $ripples = $('.ripples');
+
+        $ripples.on('click.Ripples', function(e) {
+
+            var $this = $(this);
+            var $offset = $this.parent().offset();
+            var $circle = $this.find('.ripplesCircle');
+
+            var x = e.pageX - $offset.left;
+            var y = e.pageY - $offset.top;
+
+            $circle.css({
+                top: y + 'px',
+                left: x + 'px'
+            });
+
+            $this.addClass('is-active');
+
+        });
+
+    });
+
+</script>
+
+</body>
